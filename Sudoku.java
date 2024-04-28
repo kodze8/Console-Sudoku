@@ -12,9 +12,7 @@ public class Sudoku {
         this.grid = new int[DIMENSION][DIMENSION];
 
         for (int i=0; i<grid.length; i++){
-            for (int k=0; k<grid[0].length; k++){
-                this.grid[i][k] = grid[i][k];
-            }
+            System.arraycopy(grid[i], 0, this.grid[i], 0, grid[0].length);
         }
     }
 
@@ -39,7 +37,7 @@ public class Sudoku {
     private static String to_string(String text){
         StringBuilder res = new StringBuilder();
         for (int i=0; i<DIMENSION; i++){
-            res.append(text.substring(i*DIMENSION, (i+1)*DIMENSION));
+            res.append(text, i*DIMENSION, (i+1)*DIMENSION);
             res.append("\n");
         }
         return res.toString();
@@ -134,14 +132,13 @@ public class Sudoku {
     }
 
     public static void print_grid(int [][] grid){
-        for (int i =0; i<grid.length; i++){
-            for (int k=0; k<grid[0].length; k++){
-                System.out.print(grid[i][k]+" ");
+        for (int[] ints : grid) {
+            for (int k = 0; k < grid[0].length; k++) {
+                System.out.print(ints[k] + " ");
             }
             System.out.println();
         }
     }
-
 
 
 
